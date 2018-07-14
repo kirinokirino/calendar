@@ -1,5 +1,9 @@
 body {
-	background: hsl(0, 0%, 100%);
+	background: hsl(0, 0%, 86%);
+}
+
+#widget {
+	background: hsl(0, 0%, 96%);	
 }
 
 #widget > * {
