@@ -1,0 +1,16 @@
+body {
+	background: hsl(0, 0%, 100%);
+}
+
+#widget > * {
+	padding-bottom: 1em;
+}
+
+#cal tr > * {
+	padding: 0.5em;
+}
+
+.today {
+	background: hsl(204, 20%, 86%);
+	border-radius: 20%;
+}
