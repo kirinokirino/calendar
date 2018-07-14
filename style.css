@@ -1,12 +1,9 @@
-body {
+#widget {
 	background: hsl(0, 0%, 86%);
 }
 
-#widget {
-	background: hsl(0, 0%, 96%);	
-}
-
 #widget > * {
+	background: hsl(0, 0%, 86%);
 	padding-bottom: 0.5em;
 }
 
