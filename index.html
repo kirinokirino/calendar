@@ -8,7 +8,7 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
 		<link rel="stylesheet" href="style.css">
 	</head>
-	<body class="columns">
+	<body class="columns is-mobile">
 		<div class="column"></div>
 		<div class="column is-narrow">
 			<div id="widget" class="box">
@@ -58,14 +58,18 @@
 				if (dayOfTheWeek === 4) return "Четверг";
 				if (dayOfTheWeek === 5) return "Пятница";
 				if (dayOfTheWeek === 6) return "Суббота";
-				if (dayOfTheWeek === 7) return "Воскресенье";
+				if (dayOfTheWeek === 0) return "Воскресенье";
+			}
+			function weekIsStartingOnMonday(dayOfTheWeek) {
+				if (dayOfTheWeek === 0) return 7;
+				else return dayOfTheWeek-1;
 			}
 			function daysInThisMonth(today) {
 			return new Date(today.getFullYear(), today.getMonth(), 0).getDate();
 			}
 			function getCalendarRows(today) {
 				var result = '';
-				var offset = today.getDay();
+				var offset = weekIsStartingOnMonday(today.getDay());
 				var date = today.getDate()+1;
 				for (var i=0; i<6; i++) {
 					var week = '<tr>\n';
@@ -73,7 +77,11 @@
 								magic = date - offset + j - (14 - i*7);
 								if (magic > 0 && magic <= daysInThisMonth(today)+1) {
 									week += '<td>' + magic + '</td>\n';
-								} else week += '<td>' + "❤️" + '</td>\n';
+								} else if (magic <= 0) {
+									week += '<td>' + "❤️" + '</td>\n';
+								} else {
+									week += '<td>' + (magic - daysInThisMonth(today) -1 ) + '</td>\n';
+								}
 							}
 					result += week + '\n</tr>';
 				}
